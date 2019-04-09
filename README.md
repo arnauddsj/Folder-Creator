@@ -5,4 +5,4 @@ Create folder accordingly to pictures in directory. Script will match picture na
 
 This script is used to classify huge amount of pictures by folders.
 
-To make it work, be sure your pictures are in the folder /images and that you updated the list.json given as example.
+To make it work, be sure you've updated list.json given as example.
