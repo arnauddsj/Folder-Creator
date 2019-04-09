@@ -1,0 +1,18 @@
+[
+  {
+    "Ref": "picturename1",
+    "Style": "directoryname1"
+  },
+  {
+    "Ref": "picturename2",
+    "Style": "directoryname1"
+  },
+  {
+    "Ref": "picturename3",
+    "Style": "directoryname2"
+  },
+  {
+    "Ref": "picturename4",
+    "Style": "directoryname2"
+  }
+]
