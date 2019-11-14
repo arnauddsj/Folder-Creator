@@ -13,14 +13,18 @@ function readFilesSync(dir) {
     const stat = fs.statSync(filepath);
     const isFile = stat.isFile();
 
-    if (isFile) files.push({ filepath, Ref, ext, originpath });
+    if (isFile) files.push({
+      filepath,
+      Ref,
+      ext,
+      originpath
+    });
   });
   return files;
 }
 
 const imagesPath = "./images";
 const fileList = readFilesSync(imagesPath, "utf8");
-// console.log(fileList);
 
 // Read JSON and compare to fileList
 const csvToJson = "list.json";
@@ -29,15 +33,17 @@ const listJSON = JSON.parse(fs.readFileSync(csvToJson, "utf8"));
 // Append key to matching array, object values, with array mutations -> map
 // This will return new variable with result
 
-const shorterRef = ref => ref.substr(0, 9);
+//FUNCTION FOR IMAGE NAME
+const shorterRef = ref => ref.substr(0, 11);
 
 const newFileList = fileList.map(obj => {
   const fileListRef = shorterRef(obj.Ref);
   const listJSONObj = listJSON.find(tmp => shorterRef(tmp.Ref) === fileListRef);
-  if (listJSONObj) return { ...obj, Style: listJSONObj.Style };
+  if (listJSONObj) return {
+    ...obj,
+    Style: listJSONObj.Style
+  };
 });
-
-//console.log(newFileList);
 
 // Create folder accordingly with HD and SD subfolders
 //possible improvement if file bigger than x move to HD else SD
@@ -45,9 +51,11 @@ const newFileList = fileList.map(obj => {
 const subFolderName = "HD";
 
 Object.keys(newFileList).forEach(key => {
+  // KEY REPRESENT THE INDEX OF THE ELEMENTS
   const folderName = newFileList[key].Style.toUpperCase();
   const destFolder = path.join(imagesPath, folderName);
-  console.log(folderName);
+
+  // CREATE MAIN FOLDER 
   fs.mkdir(destFolder, err => {
     if (err) {
       console.log("Folder already exist");
